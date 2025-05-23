@@ -1,0 +1,15 @@
+[submodule "pack/plugins/opt/vim-fugitive"]
+	path = pack/plugins/opt/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "pack/plugins/opt/vim-airline"]
+	path = pack/plugins/opt/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "pack/plugins/opt/vim-airline-themes"]
+	path = pack/plugins/opt/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "pack/plugins/start/fuzzyy"]
+	path = pack/plugins/start/fuzzyy
+	url = https://github.com/Donaldttt/fuzzyy
+[submodule "pack/plugins/start/ale"]
+	path = pack/plugins/start/ale
+	url = https://github.com/dense-analysis/ale.git
