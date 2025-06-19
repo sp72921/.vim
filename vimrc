@@ -85,24 +85,17 @@ if has('gui_running')
     call airline#parts#define_accent('linenr', 'none')
     call airline#parts#define_accent('maxlinenr', 'none')
     let g:airline_extensions = ['branch']
-    let g:airline_section_z = '%l/%c'
-    " let g:airline#extensions#tabline#enabled = 1
-    " let g:airline#extensions#tabline#formatter = 'default'
-    " let g:airline_statusline_ontop = 1
+    let g:airline_section_z = '%l:%c'
     let g:airline#extensions#ale#enabled = 1
     let g:airline#extensions#branch#enabled = 1
     let g:airline_detect_paste=1
-    let g:airline_theme='minimalist'
+    let g:airline_theme='lessnoise'
 endif
 
 " TODO Import Lua Settings
 " set completeopt-=preview
 " set termguicolors=true
-" set ignorecase=true
-" set smartcase=true
-" set splitbelow=true
-" set splitright=true
 " set timeoutlen=:w300
 " set cmdheight=0
-" set wildmode=list:longest,full
+" set wildmode=list:longest
 " set completeopt=longest,menuone
