@@ -2,14 +2,19 @@
 " Author:       sp729
 " Maintainer:   sp729
 " License:      GPL-3.0 license
-" Last Updated: Wed 24 May 2025
+" Last Updated: 20 July 2025
+
+" A port of Prot's emacs theme ef-elea-dark
+" https://protesilaos.com/emacs/ef-themes
 
 set background=dark
 
+" Get the name of the face under the cursor
 function! SynGroup()
     let l:s = synID(line('.'), col('.'), 1)
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
+
 map gm :call SynGroup()<CR>
 
 hi clear
@@ -22,6 +27,8 @@ if (has("gui_running"))
   let s:fgMain  = "#eaf2ef"
   let s:bgDim   = "#303332"
   let s:fgDim   = "#969faf"
+  let s:bgTerm  = "#000000"
+  let s:fgTerm  = "#ffffff"
 
   " Basic hues for foreground values
   let s:red             = "#ff656a"
@@ -217,7 +224,7 @@ exe "let s:fg_docstring       = ' ".s:vmode."fg=".s:cyan_faint        ."'"
 exe "let s:fg_string          = ' ".s:vmode."fg=".s:green_cooler      ."'"
 exe "let s:fg_type            = ' ".s:vmode."fg=".s:cyan              ."'"
 exe "let s:fg_variable        = ' ".s:vmode."fg=".s:magenta           ."'"
-exe "let s:fg_search_match    = ' ".s:vmode."fg=".s:bg_warning        ."'"
+exe "let s:fg_search_match    = ' ".s:vmode."fg=".s:fg_blue_subtle    ."'"
 exe "let s:fg_search_current  = ' ".s:vmode."fg=".s:fg_yellow_intense ."'"
 exe "let s:fg_search_lazy     = ' ".s:vmode."fg=".s:fg_blue_intense   ."'"
 exe "let s:fg_search_replace  = ' ".s:vmode."fg=".s:fg_red_intense    ."'"
@@ -263,6 +270,10 @@ exe "let s:bg_completion      = ' ".s:vmode."bg=".s:completion       ."'"
 exe "let s:bg_hover           = ' ".s:vmode."bg=".s:hover            ."'"
 exe "let s:bg_hover_secondary = ' ".s:vmode."bg=".s:hover_secondary  ."'"
 exe "let s:bg_hl_line         = ' ".s:vmode."bg=".s:hl_line          ."'"
+exe "let s:fg_success         = ' ".s:vmode."fg=".s:green_cooler     ."'"
+exe "let s:fg_special         = ' ".s:vmode."fg=".s:cyan_faint       ."'"
+exe "let s:bg_terminal        = ' ".s:vmode."bg=".s:bgTerm           ."'"
+exe "let s:fg_terminal        = ' ".s:vmode."fg=".s:fgTerm           ."'"
 " }}}
 
 " Basic highlighting"{{{
@@ -304,7 +315,7 @@ exe "hi! Type"         .s:fmt_none   .s:fg_cyan           .s:bg_none
 "       *Type          int, long, char, etc.
 "        StorageClass  static, register, volatile, etc.
 
-exe "hi! Special"      .s:fmt_none   .s:fg_prompt         .s:bg_none
+exe "hi! Special"      .s:fmt_none   .s:fg_special        .s:bg_none
 "       *Special       any special symbol
 "        SpecialChar   special character in a constant
 "        Tag           you can use CTRL-] on this
@@ -357,11 +368,11 @@ exe "hi! FoldColumn"   .s:fmt_none   .s:fg_dim            .s:bg_dim
 exe "hi! SignColumn"   .s:fmt_none   .s:fg_dim            .s:bg_dim
 exe "hi! ErrorMsg"     .s:fmt_revr   .s:fg_err            .s:bg_none
 exe "hi! WarningMsg"   .s:fmt_revr   .s:fg_warning        .s:bg_none
-exe "hi! Terminal"     .s:fmt_none   .s:fg_alt            .s:bg_alt
 exe "hi! NonText"      .s:fmt_none   .s:fg_cyan           .s:bg_none
 exe "hi! Question"     .s:fmt_none   .s:fg_green          .s:bg_none
 exe "hi! QuickFixLine" .s:fmt_none   .s:fg_none           .s:bg_completion
 exe "hi! Title"        .s:fmt_bold   .s:fg_title          .s:bg_none
+exe "hi! Terminal"     .s:fmt_none   .s:fg_terminal       .s:bg_terminal
 
 " Pmenu
 exe "hi! Pmenu"        .s:fmt_none   .s:fg_alt            .s:bg_alt
@@ -400,6 +411,7 @@ exe "hi! FugitiveUnstagedModifier".s:fmt_none   .s:fg_changed.s:bg_none
 exe "hi! FugitiveStagedModifier"  .s:fmt_none   .s:fg_added  .s:bg_none
 exe "hi! gitcommitSelectedType"   .s:fmt_none   .s:fg_added  .s:bg_none
 exe "hi! gitcommitBranch"         .s:fmt_none   .s:fg_info   .s:bg_none
+exe "hi! gitcommitSummary"        .s:fmt_bold   .s:fg_success.s:bg_none
 hi! link FugitiveUnstagedHeading  FugitiveStagedHeading
 hi! link FugitiveUntrackedHeading FugitiveStagedHeading
 hi! link FugitiveHeader           FugitiveStagedHeading
@@ -411,10 +423,22 @@ hi! link gitcommitHeader          FugitiveHeader
 hi! link gitcommitDiscardedType   gitcommitSelectedType
 
 " Fuzzyy
-exe "hi! fuzzyMatching" .s:fmt_bold   .s:fg_red_warmer    .s:bg_none
+exe "hi! fuzzyyMatching" .s:fmt_bold   .s:fg_red_warmer    .s:bg_none
 hi! link fuzzyyNormal Normal
 hi! link fuzzyyBorder Normal
 hi! link fuzzyyPreviewMatch CurSearch
+
+" HTML
+exe "hi! htmlTitle"         .s:fmt_undb  .s:fg_main     .s:bg_none
+exe "hi! htmlTag"           .s:fmt_none  .s:fg_main     .s:bg_none
+exe "hi! htmlEndTag"        .s:fmt_none  .s:fg_main     .s:bg_none
+exe "hi! htmlItalic"        .s:fmt_ital  .s:fg_main     .s:bg_none
+exe "hi! htmlBold"          .s:fmt_bold .s:fg_main     .s:bg_none
+exe "hi! htmlTagN"          .s:fmt_none  .s:fg_dim      .s:bg_none
+exe "hi! htmlTagName"       .s:fmt_none  .s:fg_fnname   .s:bg_none
+exe "hi! htmlSpecialTagName".s:fmt_none  .s:fg_fnname   .s:bg_none
+exe "hi! htmlArg"           .s:fmt_none  .s:fg_variable .s:bg_none
+exe "hi! javaScript"        .s:fmt_none  .s:fg_yellow   .s:bg_none
 "}}}
 
 hi! link Conditional Statement
@@ -446,6 +470,9 @@ hi! link diffAdded DiffAdd
 hi! link diffRemoved Removed
 hi! link diffLine DiffText
 hi! link diffSubName DiffText
+
+" HTML
+hi! link htmlH1 htmlTitle
 
 " INFO: Generated from vim-colorscheme plugin. Port it to the above commands
 " let s:t_Co = has('gui_running') ? -1 : (&t_Co ?? 0)

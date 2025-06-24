@@ -7,13 +7,25 @@ if has('win32')
     if executable('git') == 1
         packadd vim-fugitive
     endif
-endif 
+endif
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'c': ['clangd'],
+\   'cpp': ['clangd'],
+\}
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'c': ['uncrustify'],
+\}
 
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_use_global_executables = 1
 let g:ale_disable_lsp = 0
+let g:ale_linters_explicit = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -25,11 +37,6 @@ let g:ale_c_clangd_executable = 'clangd'
 let g:ale_c_clangd_options = '--query-driver=' . driver_path . clangd_args
 
 set omnifunc=ale#completion#OmniFunc
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'c': ['gcc'],
-\   'cpp': ['cppcheck'],
-\}
 
 nnoremap <silent> <leader>clc :ALECodeAction<CR>
 nnoremap <silent> <leader>cld :ALEGoToDefinition -vsplit<CR>
