@@ -1,6 +1,5 @@
 set rnu nu
 set display-=msgep
-set nowrap
 set numberwidth=4
 set hidden
 set autoindent
@@ -20,14 +19,17 @@ set colorcolumn=70
 set backspace=2
 set ignorecase
 set smartcase
+set wrap
+set linebreak
+set lazyredraw
 set encoding=utf-8
+set guioptions=ac
 set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 30
 
-""""""""" Plugins """""""""""
 "" Wilder.vim
 " autocmd CmdlineEnter * ++once call s:wilder_init() | call wilder#main#start()
 "
