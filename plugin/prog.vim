@@ -84,8 +84,7 @@ nnoremap <silent> <leader>clh :ALEHover<CR>
 nnoremap <silent> <leader>`   :cn<CR>
 nnoremap <silent> <leader>~   :cp<CR>
 
-" au filetype dart :iabbrev statel class MyApp extends StatelessWidget {<CR>const MyApp({super.key});<CR><CR>@override<CR>Widget build(BuildContext context) {<CR>return MaterialApp()<CR>}<ESC>=gg
-" au filetype dart :iabbrev statef class NAME extends StatefulWidget {<CR>  const NAME({super.key});<CR>  @override<CR>  State<NAME> createState() => _NAMEState();<CR>}<CR>class _NAMEState extends State<NAME> {<CR>  @override<CR>  Widget build(BuildContext context) {<CR>    return Container();<CR>  }<CR>}
+" TODO unused
 " set mouse=a
 " set mousemodel=popup_setpos
 " set completeopt=menu,menuone,popup,noselect,noinsert

@@ -34,7 +34,7 @@ nnoremap <silent> <CR>             :noh<CR><CR>
 inoremap jj                        <Esc>
 map <Space>                        <leader>
 
-nnoremap <up> gk
+nnoremap <up>   gk
 nnoremap <down> gj
 
 " Window
@@ -44,3 +44,6 @@ nnoremap <silent> <leader>x2       :split<CR>
 nnoremap <silent> <leader>x3       :vsplit<CR>
 nnoremap <leader>x0                <C-W>q
 nnoremap <silent> <leader>xt       :call ToggleSplit()<cr>
+
+" Git
+nnoremap <silent> <leader>xg       :below Git<CR>
